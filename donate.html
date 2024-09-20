@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi - Guru Fav Namlima Version</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+        body {
+            background: #000000;
+            font-family: 'Fredoka One', cursive;
+            overflow-x: hidden;
+        }
+
+        .container {
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: moveUp 10s infinite linear;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .donation-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .donation-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        footer {
+            margin-top: 2rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="particles"></div>
+
+    <div class="container mx-auto">
+        <h1 class="text-5xl font-bold text-blue-400 mb-6">Dukung Kami dengan Donasi! 🎉</h1>
+        <p class="text-lg text-white mb-8">Setiap donasi Anda sangat berarti bagi kami. Mari bersama-sama membuat perbedaan! ❤️</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="donation-box p-6 flex flex-col items-center">
+                <span class="text-5xl mb-4">📱</span>
+                <h2 class="text-xl font-semibold text-white">Gopay</h2>
+                <p class="text-lg text-white">082125511485</p>
+                <button onclick="copyToClipboard('082125511485')" class="mt-2 text-blue-400">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+
+            <div class="donation-box p-6 flex flex-col items-center">
+                <span class="text-5xl mb-4">💳</span>
+                <h2 class="text-xl font-semibold text-white">Dana</h2>
+                <p class="text-lg text-white">082125511485</p>
+                <button onclick="copyToClipboard('082125511485')" class="mt-2 text-blue-400">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+
+            <div class="donation-box p-6 flex flex-col items-center">
+                <span class="text-5xl mb-4">🔗</span>
+                <h2 class="text-xl font-semibold text-white">LinkAja</h2>
+                <p class="text-lg text-white">082125511485</p>
+                <button onclick="copyToClipboard('082125511485')" class="mt-2 text-blue-400">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+
+            <div class="donation-box p-6 flex flex-col items-center">
+                <span class="text-5xl mb-4">📥</span>
+                <h2 class="text-xl font-semibold text-white">OVO</h2>
+                <p class="text-lg text-white">082125511485</p>
+                <button onclick="copyToClipboard('082125511485')" class="mt-2 text-blue-400">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+
+            <div class="donation-box p-6 flex flex-col items-center">
+                <span class="text-5xl mb-4">🏦</span>
+                <h2 class="text-xl font-semibold text-white">Rekening BNI</h2>
+                <p class="text-lg text-white">853529454</p>
+                <p class="text-white">Atas nama Athaillah Nazhif Firdaus</p>
+                <button onclick="copyToClipboard('853529454')" class="mt-2 text-blue-400">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+        </div>
+
+        <p class="text-lg text-white mt-8">Terima kasih atas dukungan Anda! 🌟 Setiap kontribusi akan membantu kami mencapai lebih banyak.</p>
+        
+        <footer>
+            <p>Made by NajibCinta65</p>
+            <a href="index.html" class="mt-4 inline-block text-blue-400 underline">Kembali ke Halaman Utama</a>
+        </footer>
+    </div>
+
+    <script>
+        const particles = document.querySelector('.particles');
+        const totalParticles = 100;
+        for (let i = 0; i < totalParticles; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            particles.appendChild(star);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Nomor berhasil disalin: ' + text,
+                });
+            }).catch(err => {
+                console.error("Gagal menyalin: ", err);
+            });
+        }
+    </script>
+</body>
+</html>

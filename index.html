@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guru Fav Namlima Version</title>
+    <link rel="icon" href="path_to_your_favicon/logo_SMK_65%20(3).png" type="image/png">
+    <link rel="shortcut icon" href="logo_SMK_65%20(3).png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+        
+        /* Body and particle effect */
+        body {
+            background: #000000;
+            overflow: hidden;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        /* Particle styling */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: black;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: moveUp 10s infinite linear;
+        }
+
+        @keyframes moveUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        /* Title and form styling */
+        .container {
+            background: rgba(0, 0, 0, 0.85); 
+            padding: 20px;
+            border-radius: 15px;
+            width: 320px; 
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); 
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #00e6ff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+        }
+
+        .check-btn {
+            background-color: #00e6ff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .check-btn:hover {
+            background-color: #00b3cc;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            color: white;
+        }
+
+        .footer a {
+            color: #00e6ff;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Loader styles */
+        .loader {
+            display: none;
+            margin: 20px auto;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #00e6ff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Container -->
+    <div class="particles"></div>
+
+    <!-- Logo -->
+    <div class="absolute top-4 w-full flex justify-center">
+        <img src="logo_SMK_65 (3).png" alt="School Logo" class="w-12">
+    </div>
+
+    <!-- Main Container -->
+    <div class="h-screen flex items-center justify-center">
+        <div class="container" data-aos="fade-up">
+            <!-- Title -->
+            <h1 class="title">Cek Guru Favorit Kamu!</h1>
+
+            <!-- Form -->
+            <p class="subtitle">Masukkan nama yang ingin kamu cek</p>
+            <form id="guruForm">
+                <input type="text" id="name" class="input-field" placeholder="Nama kamu">
+                <button type="submit" class="check-btn mt-4">🔮 Check Guru Favorit 🔮</button>
+            </form>
+
+            <!-- Loader Animation -->
+            <div id="loader" class="loader"></div>
+
+            <!-- Result -->
+            <div id="result" class="mt-6 text-white text-lg"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="donate.html" target="_blank">💖 Support Me</a>
+        <p class="mt-2">Made by NajibCinta65</p>
+    </footer>
+
+    <!-- AOS and Random Logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        const teachers = [
+            { name: "Aty Triastuti", comment: "Selalu ceria dan penuh energi!" },
+            { name: "Sri Murningsih", comment: "Penuh perhatian dan sangat sabar." },
+            { name: "Yati Supriyati", comment: "Menyemangati semua siswa dengan caranya yang unik!" },
+            { name: "Vilia Eka Meyana", comment: "Pendengar yang baik dan selalu siap membantu." },
+            { name: "Mercy Sidabukke", comment: "Kreatif dan selalu memberikan ide-ide menarik." },
+            { name: "Slamet Sukotjo", comment: "Mampu membuat suasana belajar menjadi menyenangkan!" },
+            { name: "Dra. Romauli Pakpahan", comment: "Selalu memotivasi siswa untuk mencapai yang terbaik." },
+            { name: "Zaenudin", comment: "Ramah dan mudah didekati." },
+            { name: "Aang Setiadi", comment: "Penuh semangat dan inspiratif." },
+            { name: "Nuryani Pringgo S.", comment: "Membuat pelajaran menjadi hidup!" },
+            { name: "Sri Arum Hartini", comment: "Selalu bisa membuat semua orang tersenyum." },
+            { name: "Istiana Furih", comment: "Mengajarkan dengan cara yang menyenangkan." },
+            { name: "Nurhayati", comment: "Cinta pada pekerjaan dan itu terlihat!" },
+            { name: "Muthia Adenami", comment: "Selalu menebar kebaikan dan kasih sayang." },
+            { name: "Ririn Riandhita", comment: "Kreatif dan sangat menginspirasi!" },
+            { name: "Yuli Kurniawati", comment: "Mampu memberikan contoh yang baik." },
+            { name: "Imam Farniawan", comment: "Selalu memotivasi untuk berpikir kritis." },
+            { name: "Amelia Indah Bestari", comment: "Banyak ide brilian yang dibagikan." },
+            { name: "Abhy Sukma Pratama", comment: "Pendukung setia bagi semua siswa." },
+            { name: "Muhammad Ridwan Patawari", comment: "Memberikan motivasi yang positif." },
+            { name: "Nurussyifa Fahriza", comment: "Menyenangkan dan penuh rasa humor." },
+            { name: "Heni Verawati", comment: "Kepedulian dan kasih sayangnya sangat terasa." },
+            { name: "Fenefrida Elmi Swantie", comment: "Selalu ada untuk membantu dan mendukung." },
+            { name: "Baasith Syahramdani", comment: "Penuh dedikasi dan semangat." },
+            { name: "Martia Aviva", comment: "Menciptakan lingkungan belajar yang inklusif." },
+            { name: "Ashari", comment: "Sosok yang membangun kepercayaan diri siswa." },
+            { name: "Akbar Budiman", comment: "Sangat antusias dalam mengajar!" },
+            { name: "Ayub", comment: "Bisa membuat pelajaran menjadi lebih menarik." },
+            { name: "Wahyu Prasetyo Putra", comment: "Mampu memberikan semangat bagi semua siswa." },
+            { name: "Azizah Rahma Sandi", comment: "Selalu siap membantu kapan saja." },
+            { name: "Nur Alifia Shaffa Nisa", comment: "Penuh kasih sayang dan perhatian." },
+            { name: "Nur Azizah", comment: "Bisa membuat semua orang merasa diterima." },
+            { name: "Rangga Azhari", comment: "Membuat belajar menjadi hal yang menyenangkan." },
+            { name: "Muhammad Rizki Haykal", comment: "Sangat bersahabat dan hangat." },
+            { name: "Emza Sinar Pamungkas", comment: "Kreatif dan penuh ide cemerlang." },
+            { name: "Salwa Muthmainnah", comment: "Mampu menginspirasi banyak orang." },
+            { name: "Sinaryati Pertiwi", comment: "Sosok yang selalu memotivasi dan mendukung." },
+            { name: "Wydiana", comment: "Penuh kehangatan dan empati." },
+        ];
+
+        document.getElementById('guruForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show loader animation
+            const loader = document.getElementById('loader');
+            loader.style.display = 'block';
+
+            // Hide result while loading
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = '';
+
+            // Simulate loading with setTimeout
+            setTimeout(() => {
+                // Hide loader after 3 seconds
+                loader.style.display = 'none';
+
+                // Select a random teacher and show the result
+                const randomTeacher = teachers[Math.floor(Math.random() * teachers.length)];
+                resultDiv.innerHTML = `Guru favorit kamu adalah <strong>${randomTeacher.name}</strong>!<br>${randomTeacher.comment}`;
+            }, 3000);
+        });
+
+        // Generate star particles
+        const particles = document.querySelector('.particles');
+        const totalParticles = 100;
+        for (let i = 0; i < totalParticles; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDuration = `${Math.random() * 5 + 5}s`;
+            particles.appendChild(star);
+        }
+    </script>
+</body>
+</html>
