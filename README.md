@@ -17,7 +17,7 @@
 - **HTML5** & **JavaScript**: Untuk struktur dan fungsionalitas utama.
 
 ## 📷 Screenshot
-![Guru Fav Namlima Version](path_to_screenshot.png)
+![Guru Fav Namlima Version](ss.png)
 
 ## ⚙️ Cara Install
 1. Clone repositori ini:
